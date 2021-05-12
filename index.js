@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8080;
+const multer = require('multer');
+const upload = multer({dest: "uploads/"});
 
 require('dotenv').config()
 
@@ -39,7 +41,7 @@ app.post('/find/:id', (req, res) => {
   }
 
   const MongoClient = require('mongodb').MongoClient;
-  const uri = process.env.URI;
+  const uri = `mongodb+srv://${process.env.MDB_USER}:${process.env.MDB_PASS}@eco.fytit.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
   console.log(uri)
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
   client.connect( async (err) => {
@@ -76,4 +78,8 @@ app.post('/find/:id', (req, res) => {
       }
     }
   })
+})
+
+app.post("/recs", upload.single('itemImage'), (req, res) => {
+  console.log(req.file)
 })
