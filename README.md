@@ -1,2 +1,2 @@
 # Eco api
-Recieves an image, sends it to a mongodb sends back pre-generated requests for now.
+Recieves an image, sends it to a mongodb sends back pre-generated requests for now. This API is part of my eco chrome extension, suggesting sustainable clothing on request when shopping online.
